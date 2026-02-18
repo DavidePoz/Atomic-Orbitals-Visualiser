@@ -6,4 +6,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 include_directories(include)
 include_directories(dependencies)
 
-# file(GLOB SOURCES "src/*.cpp")
+file(GLOB SOURCES "src/*.cpp")
+
+add_executable(AtomSimulation src/main.cpp)
