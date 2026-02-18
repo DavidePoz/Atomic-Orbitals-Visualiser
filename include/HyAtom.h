@@ -22,17 +22,17 @@ class HyAtom {
 
    // ------- SIM-RELATED Functions --------------
 
-      /*
+      /**
        * Runs the simulation with (new) quantum numbers
        *
-       * @param n : principal quantum number
-       * @param l : angular quantum number
-       * @param m : magnetic quantum number
-       * @param count : number of particles to visualize on screen 
+       * @param n principal quantum number
+       * @param l angular quantum number
+       * @param m magnetic quantum number
+       * @param count number of particles to visualize on screen 
        */ 
       void runSim (int n, int l, int m, int count);
 
-      /*
+      /**
        * Updates the simulation state
        *
        * @param dt : elapsed time from previous sim state
