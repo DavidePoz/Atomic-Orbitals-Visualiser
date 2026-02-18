@@ -2,14 +2,15 @@
 #define HY_ATOM_H
 
 // GLM Headers
-#include "../dependencies/glm/glm.hpp"
+#include "glm/ext/vector_int3.hpp"
+#include <glm/glm.hpp>
 
 // STL Headers
 #include <random>
 #include <vector>
 
 struct Particle {
-   glm::vec3 position;
+   glm::dvec3 position;
    double phase;
 };
 
@@ -37,16 +38,26 @@ class HyAtom {
        *
        * @param dt : elapsed time from previous sim state
        */ 
-      void updateSim ();
+      void updateSim (double dt);
 
    // ------- Other utilities --------------
-   
-      const std::vector<Particle>& getParticles () const { return  particles_; };
+  
+      /**
+       * Returns the list of particles
+       */  
+      const std::vector<Particle>& getParticles () const { return particles_; };
+
+      /**
+       * Returns the quantum numbers
+       */  
+      const glm::ivec3 getQNumbers () const { return glm::ivec3(n,l,m); };
 
    private:
 
       std::vector<Particle> particles_;
       int n,l,m;
+
+      static constexpr double PHASE_SPEED = 2.0; 
 
       std::mt19937 rng_;
 };
