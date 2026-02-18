@@ -10,8 +10,8 @@
 #include <vector>
 
 struct Particle {
-   glm::dvec3 position;
-   double phase;
+   glm::vec3 position;
+   float phase;
 };
 
 class HyAtom {
@@ -38,7 +38,7 @@ class HyAtom {
        *
        * @param dt : elapsed time from previous sim state
        */ 
-      void updateSim (double dt);
+      void updateSim (float dt);
 
    // ------- Other utilities --------------
   
@@ -57,7 +57,7 @@ class HyAtom {
       std::vector<Particle> particles_;
       int n,l,m;
 
-      static constexpr double PHASE_SPEED = 2.0; 
+      static constexpr float PHASE_SPEED = 2.0f; 
 
       std::mt19937 rng_;
 };

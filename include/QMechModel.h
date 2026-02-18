@@ -4,15 +4,15 @@
 #include <glm/glm.hpp>
 
 namespace PhysConstants {
-   constexpr double BOHR_R = 1.0;
-   constexpr double PI = 3.14159265358979323846;
+   constexpr float BOHR_R = 1.0f;
+   constexpr float PI = 3.14159265f;
 };
 
 namespace WaveFunction {
 
-   double computeProbabilityDensity (const glm::dvec3& pos, int n, int l, int m);
+   float computeProbabilityDensity (const glm::dvec3& pos, int n, int l, int m);
 
-   double computePhase (const glm::dvec3& pos, int n, int l, int m);
+   float computePhase (const glm::dvec3& pos, int n, int l, int m);
 
 };
 

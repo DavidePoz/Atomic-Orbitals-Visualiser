@@ -2,21 +2,18 @@
 #include "HyAtom.h"
 #include "QMechModel.h"
 
-// GLM Headers
-#include "glm/ext/vector_double3.hpp"
-
 // STL Headers
 #include <iostream>
 #include <random>
 
 // Constructor : initializes the atom to a default state and the random number generator
 HyAtom::HyAtom() : n {1}, l {0}, m {0} {
-   std::random_device rand;
-   rng_ = std::mt19937(rand());
+   std::random_device rd;
+   rng_ = std::mt19937(rd());
 }
 
 // (Re)Runs the simulation
-void HyAtom::runSim (int n, int m, int l, int count) {
+void HyAtom::runSim (int n, int l, int m, int count) {
 
    // Clear previous data
    particles_.clear();
@@ -28,11 +25,11 @@ void HyAtom::runSim (int n, int m, int l, int count) {
    this->m = m;
 
    // Scale simulation area with n^2
-   double simRadius = 5.0 * n * n;
+   float simRadius = 5.0 * n * n;
 
    // Setup distributions for positions and probabilities
-   std::uniform_real_distribution<double> posDist(-simRadius, simRadius);
-   std::uniform_real_distribution<double> probDist(0.0, 1.0);
+   std::uniform_real_distribution<float> posDist(-simRadius, simRadius);
+   std::uniform_real_distribution<float> probDist(0.0, 1.0);
 
    // Simulation counters 
    int pointsSet = 0;
@@ -46,14 +43,14 @@ void HyAtom::runSim (int n, int m, int l, int count) {
       attemps++;
 
       // Generate candidate position
-      glm::dvec3 candidatePos(
+      glm::vec3 candidatePos(
          posDist(rng_),
          posDist(rng_),
          posDist(rng_)
       );
      
       // Get probability density at the candidate position
-      double dens = WaveFunction::computeProbabilityDensity(candidatePos, n, l, m);
+      float dens = WaveFunction::computeProbabilityDensity(candidatePos, n, l, m);
 
       // Rejection test
       if (dens * ACCEPTANCE > probDist(rng_)) {
@@ -73,7 +70,7 @@ void HyAtom::runSim (int n, int m, int l, int count) {
              << n << ", " << l << ", " << m << ")\n";
 }
 
-void HyAtom::updateSim (double dt) {
+void HyAtom::updateSim (float dt) {
 
    for (auto& p : particles_) {
       p.phase += PHASE_SPEED * dt;
