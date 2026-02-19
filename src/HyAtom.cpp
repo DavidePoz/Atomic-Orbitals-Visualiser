@@ -75,8 +75,8 @@ void HyAtom::updateSim (float dt) {
    for (auto& p : particles_) {
       p.phase += PHASE_SPEED * dt;
 
-      if (p.phase > 2 * PhysConstants::PI) {
-         p.phase -= 2 * PhysConstants::PI; 
+      if (p.phase > 2 * QMathHelpers::PI) {
+         p.phase -= 2 * QMathHelpers::PI; 
       }
 
    }

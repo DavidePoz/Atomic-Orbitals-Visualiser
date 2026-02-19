@@ -9,47 +9,9 @@
 #include <cmath>
 #include <cstdlib>
 
-using namespace PhysConstants;
+// ---------------------------- WAVE FUNCTION IMPLEMENTATION --------------------------
 
-// Helper functions, hidden from header files
-namespace MathHelpers {
-
-   // Convert cartesian coordinates to spherical
-   glm::vec3 cartToSpherical (const glm::vec3& pos) {
-      
-      float r = glm::length(pos); 
-      if (r < 0.0001f) return glm::vec3(0.0f);  // Tiny vectors are returned as 0-length 
-      
-      float theta = std::acos(pos.z / r);       // Angle from the vertical axis 
-      float phi = std::atan2(pos.y, pos.x);     // Angle in the xy plane
-
-      return glm::vec3(r, theta, phi);
-   }
-
-   // Returns the radial part of the wavefunction
-   // R = rho^l * N * Lag(rho) * exp(-rho/2)
-   float radialPart (float r, int n, int l) {
-
-      float rho = (2.0f * r) / (n * BOHR_R);                // Normalized distance
-      float Lag = std::assoc_laguerre(n-l-1, 2*l +1, rho);  // Laguerre pol.
-
-      // N = sqrt( (2/(n*a0))^3 * (n-l-1)! / (2n * (n+l)!) )
-      float num = std::tgamma(n-l);
-      float den = 2.0f * n * std::tgamma(n+l+1);
-      float N   = std::sqrt( std::pow(2.0f / (n * BOHR_R), 3) * (num / den) );  
-      
-      return std::pow(rho, (float)l) * N * Lag * std::exp(-rho / 2.0f);
-   }
-
-   // Returns the magnitude of the angular part of the wavefunction (ignores exponential term)
-   // Y = k * P_l^m * exp : k * P_l^m is returned
-   float angularPart (float theta, int l, int m) {
-      return std::sph_legendre(l, std::abs(m), theta);
-   }
-
-}
-
-using namespace MathHelpers;
+using namespace QMathHelpers;
 
 // Acquires the radial and angular parts of the wave function and computes its squared magnitude
 float WaveFunction::computeProbabilityDensity(const glm::dvec3 &pos, int n, int l, int m) {
@@ -82,4 +44,39 @@ float WaveFunction::computePhase(const glm::dvec3 &pos, int n, int l, int m) {
    }
    
    return phase;
+}
+
+// ---------------------------- MATH HELPERS --------------------------
+
+// Convert cartesian coordinates to spherical
+glm::vec3 QMathHelpers::cartToSpherical (const glm::vec3& pos) {
+   
+   float r = glm::length(pos); 
+   if (r < 0.0001f) return glm::vec3(0.0f);  // Tiny vectors are returned as 0-length 
+   
+   float theta = std::acos(pos.z / r);       // Angle from the vertical axis 
+   float phi = std::atan2(pos.y, pos.x);     // Angle in the xy plane
+
+   return glm::vec3(r, theta, phi);
+}
+
+// Returns the radial part of the wavefunction
+// R = rho^l * N * Lag(rho) * exp(-rho/2)
+float QMathHelpers::radialPart (float r, int n, int l) {
+
+   float rho = (2.0f * r) / (n * BOHR_R);                // Normalized distance
+   float Lag = std::assoc_laguerre(n-l-1, 2*l +1, rho);  // Laguerre pol.
+
+   // N = sqrt( (2/(n*a0))^3 * (n-l-1)! / (2n * (n+l)!) )
+   float num = std::tgamma(n-l);
+   float den = 2.0f * n * std::tgamma(n+l+1);
+   float N   = std::sqrt( std::pow(2.0f / (n * BOHR_R), 3) * (num / den) );  
+   
+   return std::pow(rho, (float)l) * N * Lag * std::exp(-rho / 2.0f);
+}
+
+// Returns the magnitude of the angular part of the wavefunction (ignores exponential term)
+// Y = k * P_l^m * exp : k * P_l^m is returned
+float QMathHelpers::angularPart (float theta, int l, int m) {
+   return std::sph_legendre(l, std::abs(m), theta);
 }
