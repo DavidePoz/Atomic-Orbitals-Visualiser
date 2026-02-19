@@ -6,8 +6,24 @@
 // Functions related to the Hydrogen wave function
 namespace WaveFunction {
 
+   /**
+    * Computes the probability density at a given position
+    *
+    * @param pos position to calculate the probability at
+    * @param n principal quantum number
+    * @param l angular quantum number
+    * @param m magnetic quantum number
+    */ 
    float computeProbabilityDensity (const glm::dvec3& pos, int n, int l, int m);
 
+   /**
+    * Computes the phase at a given position
+    *
+    * @param pos position to calculate the phase at
+    * @param n principal quantum number
+    * @param l angular quantum number
+    * @param m magnetic quantum number
+    */ 
    float computePhase (const glm::dvec3& pos, int n, int l, int m);
 
 };
