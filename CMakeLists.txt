@@ -5,6 +5,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 include_directories(include)
 include_directories(dependencies)
+include_directories(dependencies/glad/include)
 
 file(GLOB SOURCES "src/*.cpp")
 
