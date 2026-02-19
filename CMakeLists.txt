@@ -4,8 +4,6 @@ project(AtomSimulation)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 include_directories(include)
-include_directories(dependencies)
-include_directories(dependencies/glad/include)
 
 find_package(glad CONFIG REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
