@@ -21,6 +21,10 @@ Shader::Shader (const char* vertexPath, const char* fragmentPath) {
    std::ifstream vShaderFile;
    std::ifstream fShaderFile;
 
+   // Make ifstream throw exceptions
+   vShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+   fShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+
    // Read Vertex and Fragment shader code from files
    try {
 
@@ -113,7 +117,7 @@ void Shader::checkCompileErrors (unsigned int shader, const std::string& type) c
       glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
 
       if (!success) {
-         glad_glGetShaderInfoLog(shader, 1024, NULL, infoLog);
+         glGetShaderInfoLog(shader, 1024, NULL, infoLog);
          std::cerr << "ERROR: SHADER COMPILATION ERROR: " << type << "\n" << infoLog << "\n\n";
       }
    } else {
