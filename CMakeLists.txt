@@ -9,9 +9,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Package dependencies
-find_package(glad CONFIG REQUIRED)
-find_package(glfw3 CONFIG REQUIRED)
-find_package(glm CONFIG REQUIRED)
+find_package(glfw3 REQUIRED)
+find_package(glm REQUIRED)
 
 # Source files
 set(SOURCES
@@ -22,6 +21,7 @@ set(SOURCES
    src/Renderer.cpp
    src/HyAtom.cpp
    src/QMechModel.cpp
+   src/glad.c
 )
 
 # Executable 
@@ -32,7 +32,7 @@ target_include_directories(AtomSimulation PRIVATE include)
 
 # Link OpenGL libraries
 target_link_libraries(AtomSimulation PRIVATE 
-    glad::glad 
     glfw 
     glm::glm
+    ${CMAKE_DL_LIBS}
 )
