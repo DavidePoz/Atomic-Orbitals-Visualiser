@@ -57,7 +57,7 @@ class HyAtom {
       std::vector<Particle> particles_;
       int n,l,m;
 
-      static constexpr float PHASE_SPEED = 2.0f; 
+      static constexpr float PHASE_SPEED = 0.2f; 
 
       std::mt19937 rng_;
 };

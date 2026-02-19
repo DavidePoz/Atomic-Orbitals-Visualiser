@@ -3,6 +3,7 @@
 #include "QMechModel.h"
 
 // STL Headers
+#include <glm/fwd.hpp>
 #include <iostream>
 #include <random>
 
@@ -36,7 +37,7 @@ void HyAtom::runSim (int n, int l, int m, int count) {
    int attemps   = 0;
    const int SAFE_FACTOR  = 100;
    const int MAX_ATTEMPTS = count * SAFE_FACTOR;
-   const int ACCEPTANCE   = 100;
+   const int ACCEPTANCE   = 10000;
 
    // Simulation
    while (pointsSet < count && attemps < MAX_ATTEMPTS) {
