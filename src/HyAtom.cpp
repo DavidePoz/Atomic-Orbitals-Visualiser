@@ -4,11 +4,12 @@
 
 // STL Headers
 #include <algorithm>
-#include <glm/fwd.hpp>
-#include <glm/trigonometric.hpp>
-#include <iostream>
 #include <iterator>
 #include <random>
+
+// GL Headers
+#include <glm/fwd.hpp>
+#include <glm/trigonometric.hpp>
 
 // Constructor : initializes the atom to a default state and the random number generator
 HyAtom::HyAtom() : n {1}, l {0}, m {0} {
@@ -84,22 +85,9 @@ void HyAtom::runSim (int n, int l, int m, int count) {
       Particle p;
       p.position = pos;
       p.phase = WaveFunction::computePhase(pos, n, l, m);
+      p.pDensity = WaveFunction::computeProbabilityDensity(pos, n, l, m);
       particles_.push_back(p);
 
    }
    
-
-}
-
-void HyAtom::updateSim (float dt) {
-
-   for (auto& p : particles_) {
-      p.phase += PHASE_SPEED * dt;
-
-      if (p.phase > 2 * QMathHelpers::PI) {
-         p.phase -= 2 * QMathHelpers::PI; 
-      }
-
-   }
-
 }

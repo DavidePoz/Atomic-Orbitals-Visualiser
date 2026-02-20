@@ -12,6 +12,7 @@
 struct Particle {
    glm::vec3 position;
    float phase;
+   float pDensity;
 };
 
 class HyAtom {
@@ -32,13 +33,6 @@ class HyAtom {
        * @param count number of particles to visualize on screen 
        */ 
       void runSim (int n, int l, int m, int count);
-
-      /**
-       * Updates the simulation state
-       *
-       * @param dt : elapsed time from previous sim state
-       */ 
-      void updateSim (float dt);
 
    // ------- Other utilities --------------
   

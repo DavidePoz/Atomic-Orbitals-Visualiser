@@ -87,27 +87,33 @@ int main () {
    Shader shader("../shaders/particle.vert", "../shaders/particle.frag");
    Renderer renderer;
    renderer.setupParticles(electronCloud);
-   float lastFrame = 0.0f;
+   
+   int viewMode = 0;
+   bool vKeyPressed = false;
 
    while (window.isOpen()) {
-      /*
-      float currFrame = static_cast<float>(glfwGetTime());
-      float dt = currFrame - lastFrame;
-      lastFrame = currFrame;
-      */
 
       window.listenEvents();
 
+      // Escape key closes the window
       if (glfwGetKey(natWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
          glfwSetWindowShouldClose(natWindow, true);
       }
-      
-      // atom.updateSim(dt);
-      // renderer.updateParticles(atom.getParticles());
+     
+      if (glfwGetKey(natWindow, GLFW_KEY_V) == GLFW_PRESS) {
+         if (!vKeyPressed) {
+            viewMode = (viewMode == 0) ? 1 : 0;
+            vKeyPressed = true;
+         }
+      } else {
+         vKeyPressed = false;
+      }
 
       window.clear(0.02f, 0.03f, 0.06f, 1.0f);
+      
       shader.use();
-      shader.setFloat("uTime", static_cast<float>(glfwGetTime()));
+      shader.setInt("uViewMode", viewMode);      
+
       renderer.draw(shader, camera);
       window.swapBuffers();
    }

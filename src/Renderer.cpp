@@ -33,11 +33,17 @@ void Renderer::setupParticles (const std::vector<Particle>& particles) {
 
    GLsizei partSize = sizeof(Particle);
 
+   // Attribute 0: particle position (3 float values)
    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, partSize, (void*)0);
    glEnableVertexAttribArray(0);
    
+   // Attribute 1: associated phase (1 float value)
    glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, partSize, (void*)offsetof(Particle, phase));   
    glEnableVertexAttribArray(1);
+
+   // Attribute 2: associated probability density (1 float value)
+   glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, partSize, (void*)offsetof(Particle, pDensity));   
+   glEnableVertexAttribArray(2);
 
    glBindVertexArray(0);   
 }
