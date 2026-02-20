@@ -161,7 +161,11 @@ int main () {
       ImGui::Begin("Quantum State Settings");
 
          int prev_n = n, prev_l = l, prev_m = m;
-         
+        
+         if (l >= n) l = n - 1;
+         if (m > l) m = l;
+         if (m < -l) m = -l;
+
          // Draw Sliders
          ImGui::SliderInt("Principal (n)", &n, 1, 8);
          ImGui::SliderInt("Angular (l)", &l, 0, n - 1); 
