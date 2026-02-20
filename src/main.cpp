@@ -17,8 +17,8 @@
 
 // ------- GLOBALS FOR MOUSE INPUT HANDLING -------
 
-constexpr int WINDOW_WIDTH = 1920;
-constexpr int WINDOW_HEIGHT = 1080;
+constexpr int WINDOW_WIDTH = 1000;
+constexpr int WINDOW_HEIGHT = 1000;
 constexpr float ASPECT_RATIO = static_cast<float>(WINDOW_WIDTH) / static_cast<float>(WINDOW_HEIGHT);
 
 Camera* cam = nullptr;
@@ -78,7 +78,7 @@ int main () {
 
    int n = 3;
    int l = 2;
-   int m = 1;
+   int m = 2;
 
    HyAtom atom;
    atom.runSim(n, l, m, PARTICLE_COUNT);
@@ -87,16 +87,27 @@ int main () {
    Shader shader("../shaders/particle.vert", "../shaders/particle.frag");
    Renderer renderer;
    renderer.setupParticles(electronCloud);
+   float lastFrame = 0.0f;
 
    while (window.isOpen()) {
+      /*
+      float currFrame = static_cast<float>(glfwGetTime());
+      float dt = currFrame - lastFrame;
+      lastFrame = currFrame;
+      */
+
       window.listenEvents();
 
       if (glfwGetKey(natWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
          glfwSetWindowShouldClose(natWindow, true);
       }
       
-      //atom.updateSim(10);
+      // atom.updateSim(dt);
+      // renderer.updateParticles(atom.getParticles());
+
       window.clear(0.02f, 0.03f, 0.06f, 1.0f);
+      shader.use();
+      shader.setFloat("uTime", static_cast<float>(glfwGetTime()));
       renderer.draw(shader, camera);
       window.swapBuffers();
    }
