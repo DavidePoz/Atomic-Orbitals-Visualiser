@@ -6,11 +6,14 @@ out vec4 FragColor;
 
 void main () {
    
-   vec3 baseColor = vec3(0.2, 0.7, 1.0);
-
    float wave = sin(particleValue);
-   float intensity = 0.6 + (0.4 * wave);
+    
+   float mixVal = (wave + 1.0) * 0.5;
 
-   FragColor = vec4(baseColor * intensity, 1.0);
+   vec3 posPhaseColor = vec3(0.0, 0.8, 1.0); 
+   vec3 negPhaseColor = vec3(1.0, 0.2, 0.5); 
 
+   vec3 finalColor = mix(negPhaseColor, posPhaseColor, mixVal);
+    
+   FragColor = vec4(finalColor, 1.0);
 }

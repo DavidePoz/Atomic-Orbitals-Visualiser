@@ -43,6 +43,7 @@ Window::Window (int width, int height, const std::string& title)
    }
 
    glEnable(GL_DEPTH_TEST);
+   glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 }
 
 // Destructor

@@ -69,17 +69,17 @@ void HyAtom::runSim (int n, int l, int m, int count) {
       float u_phi = probDist(rng_);
 
       auto it_r = std::lower_bound(cdf_r.begin(), cdf_r.end(), u_r);
-      float r = std::distance(cdf_r.begin(), it_r) * dr;
+      float r = (std::distance(cdf_r.begin(), it_r) + probDist(rng_)) * dr;
 
       auto it_theta = std::lower_bound(cdf_theta.begin(), cdf_theta.end(), u_theta);
-      float theta = std::distance(cdf_theta.begin(), it_theta) * dtheta;
+      float theta = (std::distance(cdf_theta.begin(), it_theta) + probDist(rng_)) * dtheta;
 
       float phi = u_phi * 2.0f * QMathHelpers::PI;
 
       glm::vec3 pos;
       pos.x = r * std::sin(theta) * std::cos(phi);
-      pos.y = r * std::sin(theta) * std::sin(phi);
-      pos.z = r * std::cos(theta);
+      pos.z = r * std::sin(theta) * std::sin(phi);
+      pos.y = r * std::cos(theta);
 
       Particle p;
       p.position = pos;

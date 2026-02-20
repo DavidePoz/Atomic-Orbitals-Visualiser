@@ -77,7 +77,7 @@ int main () {
    constexpr int PARTICLE_COUNT = 100000;
 
    int n = 3;
-   int l = 1;
+   int l = 2;
    int m = 1;
 
    HyAtom atom;
@@ -95,8 +95,8 @@ int main () {
          glfwSetWindowShouldClose(natWindow, true);
       }
       
-      atom.updateSim(10);
-      window.clear(0.01f, 0.02f, 0.05f, 1.0f);
+      //atom.updateSim(10);
+      window.clear(0.02f, 0.03f, 0.06f, 1.0f);
       renderer.draw(shader, camera);
       window.swapBuffers();
    }
