@@ -90,4 +90,12 @@ void HyAtom::runSim (int n, int l, int m, int count) {
 
    }
    
+   float maxDens = 0.0f;
+   for (const auto& p : particles_) {
+      if (p.pDensity > maxDens) maxDens = p.pDensity;
+   }
+   for (auto& p : particles_) {
+      p.pDensity /= maxDens;
+   }
+
 }

@@ -16,7 +16,7 @@ void main() {
       vec3 posPhaseColor = vec3(0.0, 0.8, 1.0);
       vec3 negPhaseColor = vec3(1.0, 0.2, 0.5);
 
-      vec3 baseColor = (wave > 0.0) ? posPhaseColor : negPhaseColor;
+      vec3 baseColor = (wave >= 0.0) ? posPhaseColor : negPhaseColor;
       finalColor = baseColor * abs(wave);
    } else {
       vec3 lowProbColor = vec3(0.0, 0.1, 0.4);
