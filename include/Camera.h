@@ -23,7 +23,7 @@ class Camera {
        * @param rMin minimum distance from the centre of the scene
        * @param rMax maximum distance from the centre of the scene
        */ 
-      Camera (float radius, float fov, float aspect, float rMin = 1.0f, float rMax = 50.0f);
+      Camera (float radius, float fov, float aspect, float rMin = 1.0f, float rMax = 100.0f);
 
       /**
        * Processes mouse movement

@@ -67,7 +67,7 @@ int main () {
    Window window(WINDOW_WIDTH, WINDOW_HEIGHT, "Hydrogen_Atom_Sim");
    GLFWwindow* natWindow = window.getNatWindow();
    
-   Camera camera(20.0f, 45.0f, ASPECT_RATIO);
+   Camera camera(70.0f, 45.0f, ASPECT_RATIO);
    cam = &camera;
 
    glfwSetCursorPosCallback(natWindow, mouseCallback);
