@@ -21,14 +21,26 @@ set(SOURCES
    src/Renderer.cpp
    src/HyAtom.cpp
    src/QMechModel.cpp
-   src/glad.c
+   
+   # External sources
+   src/Externals/glad.c
+   src/Externals/Imgui/imgui.cpp
+   src/Externals/Imgui/imgui_draw.cpp
+   src/Externals/Imgui/imgui_tables.cpp
+   src/Externals/Imgui/imgui_widgets.cpp
+   src/Externals/Imgui/imgui_impl_glfw.cpp
+   src/Externals/Imgui/imgui_impl_opengl3.cpp
 )
 
 # Executable 
 add_executable(AtomSimulation ${SOURCES})
 
 # Header files location
-target_include_directories(AtomSimulation PRIVATE include)
+target_include_directories(AtomSimulation PRIVATE 
+   include
+   include/Externals
+   include/Externals/Imgui
+)
 
 # Link OpenGL libraries
 target_link_libraries(AtomSimulation PRIVATE 
