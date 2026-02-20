@@ -63,11 +63,15 @@ void scrollCallback (GLFWwindow* window, double xoffset, double yoffset) {
 int main () {
 
    std::cout << "Initializing Hydrogen Atom simulation\n";
+ 
+   int n = 5;
+   int l = 3;
+   int m = 1;
 
    Window window(WINDOW_WIDTH, WINDOW_HEIGHT, "Hydrogen_Atom_Sim");
    GLFWwindow* natWindow = window.getNatWindow();
    
-   Camera camera(70.0f, 45.0f, ASPECT_RATIO);
+   Camera camera(6.0f * n * n, 45.0f, ASPECT_RATIO, 0.5f, 7.5f * n * n);
    cam = &camera;
 
    glfwSetCursorPosCallback(natWindow, mouseCallback);
@@ -75,10 +79,6 @@ int main () {
    glfwSetInputMode(natWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
    constexpr int PARTICLE_COUNT = 100000;
-
-   int n = 3;
-   int l = 2;
-   int m = 2;
 
    HyAtom atom;
    atom.runSim(n, l, m, PARTICLE_COUNT);
