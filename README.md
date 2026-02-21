@@ -103,7 +103,7 @@ The easiest way to install the required dependencies is via [vcpkg](https://vcpk
 
 1. **Clone the repo**
     ```bash
-    git clone https:...
+    git clone https://github.com/DavidePoz/Atomic-Orbitals-Visualiser.git
     cd Atomic-Orbitals-Visualiser
     ```
 2. **Build**
