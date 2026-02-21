@@ -9,6 +9,10 @@
 #include <iostream>
 #include <string>
 
+/*
+ * BOILERPLATE TO HANDLE GLFW Windows
+ */ 
+
 // Helper
 void framebuffer_size_callback (GLFWwindow* window, int width, int height) {
    glViewport(0, 0, width, height);

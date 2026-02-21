@@ -115,7 +115,6 @@ void Shader::checkCompileErrors (unsigned int shader, const std::string& type) c
 
    if (type != "PROGRAM") {
       glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
-
       if (!success) {
          glGetShaderInfoLog(shader, 1024, NULL, infoLog);
          std::cerr << "ERROR: SHADER COMPILATION ERROR: " << type << "\n" << infoLog << "\n\n";

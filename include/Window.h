@@ -4,6 +4,10 @@
 // STL Headers
 #include <string>
 
+/*
+ * BOILERPLATE TO HANDLE GLFW Windows
+ */ 
+
 struct GLFWwindow;
 
 class Window {

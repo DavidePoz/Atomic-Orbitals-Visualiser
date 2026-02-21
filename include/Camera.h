@@ -10,6 +10,9 @@ constexpr float START_PHI   = 30.0f;
 constexpr float MOUSE_SENS  = 0.5f;
 constexpr float ZOOM_SENS   = 0.5f;
 
+/*
+ * CAMERA HANDLING CLASS
+ */ 
 class Camera {
 
    public:
@@ -64,6 +67,9 @@ class Camera {
       const float MIN_R;
       const float MAX_R;
 
+      /** 
+       * Internal helper: updates the camera position 
+       */
       void updateCamera ();
 
 };

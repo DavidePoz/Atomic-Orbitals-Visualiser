@@ -1,6 +1,5 @@
 // --- SIMULATION HEADERS ---
 #include "HyAtom.h"
-#include "QMechModel.h"
 
 // --- VISUALISATION HEADERS ---
 #include "Window.h"

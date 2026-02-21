@@ -33,7 +33,7 @@ float WaveFunction::computePhase(const glm::dvec3 &pos, int n, int l, int m) {
 
    glm::vec3 sphericalPos = cartToSpherical(pos);
 
-   float phase = (float)m * sphericalPos.z;
+   float phase = static_cast<float>(m) * sphericalPos.z;
 
    float R = radialPart(sphericalPos.x, n, l);
    float Y = angularPart(sphericalPos.y, l, m);
@@ -52,10 +52,10 @@ float WaveFunction::computePhase(const glm::dvec3 &pos, int n, int l, int m) {
 glm::vec3 QMathHelpers::cartToSpherical (const glm::vec3& pos) {
    
    float r = glm::length(pos); 
-   if (r < 0.0001f) return glm::vec3(0.0f);  // Tiny vectors are returned as 0-length 
+   if (r < 0.0001f) return glm::vec3(0.0f); 
    
-   float theta = std::acos(pos.z / r);       // Angle from the vertical axis 
-   float phi = std::atan2(pos.y, pos.x);     // Angle in the xy plane
+   float theta = std::acos(pos.z / r);
+   float phi = std::atan2(pos.y, pos.x);
 
    return glm::vec3(r, theta, phi);
 }

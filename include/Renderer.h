@@ -10,10 +10,9 @@
 #include <cstddef>
 #include <vector>
 
-// GL Headers
-
-
-
+/**
+ * Class to handle scene rendering
+ */ 
 class Renderer {
 
    public:
@@ -34,7 +33,7 @@ class Renderer {
       /**
        * Draws the particles to the screen 
        *
-       * @param shader the shader to apply to each particle
+       * @param shader the shader object to apply to each particle
        * @param camera the camera object to apply the correct view and projection transformations
        */ 
       void draw (const Shader& shader, const Camera& camera) const;

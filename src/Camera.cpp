@@ -7,6 +7,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/trigonometric.hpp>
 
+// Constructor
 Camera::Camera (float radius, float fov, float aspect, float rMin, float rMax)
    : radius_ {radius}, theta_ {START_THETA}, phi_ {START_PHI},
      fov_ {fov}, aspect_ {aspect}, 
@@ -15,6 +16,7 @@ Camera::Camera (float radius, float fov, float aspect, float rMin, float rMax)
    updateCamera();
 }
 
+// Processes mouse movement
 void Camera::handleMouseMovement (float xoff, float yoff) {
    theta_ -= xoff * MOUSE_SENS;
    phi_ += yoff * MOUSE_SENS;
@@ -26,6 +28,7 @@ void Camera::handleMouseMovement (float xoff, float yoff) {
    updateCamera();
 }
 
+// Processes wheel scroll movement
 void Camera::handleScroll (float yoff) {
    radius_ -= yoff * ZOOM_SENS;
 
@@ -35,6 +38,7 @@ void Camera::handleScroll (float yoff) {
    updateCamera();
 }
 
+// Getter functions
 glm::vec3 Camera::getPosition () const {
    return position_;
 }
@@ -47,6 +51,7 @@ glm::mat4 Camera::getProjMatrix () const {
    return glm::perspective(glm::radians(fov_), aspect_, MIN_R * 0.8f, MAX_R * 1.2f );
 }
 
+// Internal helper: updates the camera position
 void Camera::updateCamera () {
    float x = radius_ * glm::cos(glm::radians(phi_)) * glm::sin(glm::radians(theta_));
    float y = radius_ * glm::sin(glm::radians(phi_));
