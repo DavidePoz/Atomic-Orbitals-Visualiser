@@ -1,8 +1,45 @@
 # ATOMIC ORBITALS VISUALISER
 
-# PROJECT ...
+# PROJECT DESCRIPTION
 
-...
+This program simulates *atomic orbitals* according to the solutions to the [Schrödinger equation](https://en.wikipedia.org/wiki/Schr%C3%B6dinger_equation) for the hydrogen atom.
+
+> [!note] 
+> Note that I am not a physics student, therefore this project is a result of my **limited** knowledge of the topic.
+> Nevertheless, I find this simulation to be a *good enough* representation of the underlying mechanics (or at least hope so).
+
+## SHOWCASE
+
+When you run the program, the default state is given by the following quantum numbers:
+- **n** : 1
+- **l** : 0
+- **m** : 0
+
+You can adjust the sliders int the provided GUI to visualise orbitals corresponding to different combinations of quantum numbers, with the following constraints:
+- **n** must be an integer between 1 and 8.
+- **l** must be an integer between 0 and n-1.
+- **m** must be an integer in the range $\[-l, +l\]$.
+
+You can move the camera by *clicking and dragging* with your mouse cursor.
+
+![Example_310](Media/Example_310.png)
+
+In the above example, you can see the orbital resulting from *n=3, l=1, m=0*.
+The color conding reflects the *probability density* of finding the electron: *gold-ish* colors represent high probability areas and *purple-ish* colors represnt low probability.
+
+By pressing `v` you can toggle a differnt view, as shown below:
+
+![Example_310_phase](Media/Example_310_phase.png)
+
+Now the orbitals are pictured in *two distinct colors* representing the *phase* (or *polarity*) of each area of the clouds.
+
+## MORE EXAMPLES
+
+More (interesting) configurations are shown below:
+
+![Example_810](Media/Example_810.png)
+
+![Example_860](Media/Example_860.png)
 
 # DEPENDENCIES
 
