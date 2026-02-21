@@ -25,7 +25,7 @@ You can move the camera by *clicking and dragging* with your mouse cursor.
 ![Example_310](Media/Example_310.png)
 
 In the above example, you can see the orbital resulting from *n=3, l=1, m=0*.
-The color conding reflects the *probability density* of finding the electron: *gold-ish* colors represent high probability areas and *purple-ish* colors represnt low probability.
+The color coding reflects the *probability density* of finding the electron: *gold-ish* colors represent high probability areas and *purple-ish* colors represnt low probability.
 
 By pressing `v` you can toggle a differnt view, as shown below:
 
